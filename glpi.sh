@@ -79,7 +79,7 @@ mysql_secure_installation
 echo "Installing PHP and extensions..."
 apt install -y \
 php libapache2-mod-php \
-php-mysql php-gd php-xml php-mbstring php-curl php-zip \
+php-mysql php-gd php-xml php-mbstring php-curl php-zip php-bcmath \
 php-intl php-bz2 php-ldap php-imap
 
 #############################
