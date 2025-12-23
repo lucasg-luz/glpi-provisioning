@@ -124,6 +124,8 @@ cat <<EOF > /etc/apache2/sites-available/glpi.conf
 <VirtualHost *:80>
     ServerName ${GLPI_SERVERNAME}
     DocumentRoot /var/www/glpi/public
+    #Redirect permanent / https://${GLPI_SERVERNAME}/
+
 
     <Directory /var/www/glpi/public>
         AllowOverride All
@@ -132,6 +134,28 @@ cat <<EOF > /etc/apache2/sites-available/glpi.conf
 
     ErrorLog \${APACHE_LOG_DIR}/glpi_error.log
     CustomLog \${APACHE_LOG_DIR}/glpi_access.log combined
+</VirtualHost>
+EOF
+
+cat <<EOF > /etc/apache2/sites-available/glpi-ssl.conf
+<VirtualHost *:443>
+    ServerName ${GLPI_SERVERNAME}
+    DocumentRoot /var/www/glpi/public
+
+    SSLEngine on
+    SSLCertificateFile      /etc/ssl/certs/csf.crt
+    SSLCertificateKeyFile   /etc/ssl/private/csf.key
+
+    <Directory /var/www/glpi/public>
+        #AllowOverride All
+        #Require all granted
+        #RewriteEngine On
+        #RewriteCond %{REQUEST_FILENAME} !-f
+        #RewriteRule ^(.*)$ index.php [QSA,L]
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/glpi_ssl_error.log
+    CustomLog ${APACHE_LOG_DIR}/glpi_ssl_access.log combined
 </VirtualHost>
 EOF
 
