@@ -159,6 +159,13 @@ cat <<EOF > /etc/apache2/sites-available/glpi-ssl.conf
 </VirtualHost>
 EOF
 
+cat <<EOF > /var/www/glpi/public/.htaccess
+RewriteBase /
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+EOF
+
 a2enmod rewrite
 a2enmod ssl
 a2ensite glpi.conf
