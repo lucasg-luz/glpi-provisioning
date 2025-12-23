@@ -100,7 +100,7 @@ EOF
 echo "⬇ Downloading latest GLPI..."
 
 cd /tmp
-curl -fsSL https://github.com/glpi-project/glpi/releases/latest/download/glpi.tgz -o glpi.tgz
+curl -fsSL https://github.com/glpi-project/glpi/releases/download/11.0.4/glpi-11.0.4.tgz -o glpi.tgz
 
 echo "Extracting GLPI..."
 tar -xzf glpi.tgz
