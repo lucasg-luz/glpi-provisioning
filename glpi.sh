@@ -160,6 +160,7 @@ cat <<EOF > /etc/apache2/sites-available/glpi-ssl.conf
 EOF
 
 a2enmod rewrite
+a2enmod ssl
 a2ensite glpi.conf
 a2dissite 000-default.conf
 
