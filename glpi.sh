@@ -105,15 +105,15 @@ wget -q https://github.com/glpi-project/glpi/releases/latest/download/glpi.tgz
 echo "Extracting GLPI..."
 tar -xzf glpi.tgz
 
-echo "Moving GLPI to /var/www/html..."
-mv glpi /var/www/html/
+echo "Moving GLPI to /var/www..."
+mv glpi /var/www/
 
 #################################
 # Set correct permissions       #
 #################################
 echo "Setting permissions..."
-chown -R www-data:www-data /var/www/html/glpi
-chmod -R 755 /var/www/html/glpi
+chown -R www-data:www-data /var/www/glpi
+chmod -R 755 /var/www/glpi
 
 #################################
 # Configure Apache VirtualHost  #
@@ -123,9 +123,9 @@ echo "Configuring Apache VirtualHost..."
 cat <<EOF > /etc/apache2/sites-available/glpi.conf
 <VirtualHost *:80>
     ServerName ${GLPI_SERVERNAME}
-    DocumentRoot /var/www/html/glpi/public
+    DocumentRoot /var/www/glpi/public
 
-    <Directory /var/www/html/glpi/public>
+    <Directory /var/www/glpi/public>
         AllowOverride All
         Require all granted
     </Directory>
