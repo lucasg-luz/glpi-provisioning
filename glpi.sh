@@ -37,11 +37,12 @@ echo "Variables set"
 sleep 1
 
 ################################
-# Refresh system repositories #
+# Refresh system repositories and set timmedate #
 ################################
 echo "Updating system..."
 apt update
 apt upgrade -y
+timedatectl set-timezone America/Sao_Paulo
 
 ####################
 # Install Apache  #
